@@ -92,6 +92,12 @@ header{
     border-style: none;
     border: 1px solid #C4C4C4;
 }
+.sort-icon svg{
+    display: none;
+}
+.sort-icon svg.show{
+    display: inline;
+}
 .sort-icon svg:hover * {
     fill: #000000;
 }
