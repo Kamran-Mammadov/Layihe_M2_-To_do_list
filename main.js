@@ -12,7 +12,7 @@ input.addEventListener("keyup", function(e){
 });
 
 function funcAdd(){
-    //if(todoList.childElementCount < 5) {
+    if(todoList.childElementCount < 5) {
         let newInput = document.createElement('div');
         newInput.classList.add('task');
         newInput.innerHTML = `<p contentEditable="true">${input.value}</p>
@@ -21,21 +21,30 @@ function funcAdd(){
             <path d="M6 6L14 14" stroke="#C4C4C4" />
             <path d="M6 14L14 6" stroke="#C4C4C4" />
         </svg>`;
-    //}
-    todoList.appendChild(newInput);
-    input.value = '';
+        todoList.appendChild(newInput);
+        newInput.querySelector("svg").addEventListener("click", function (){
+            this.parentElement.remove();
+            check();
+        })
+        input.value = '';
+        check();
+    };
 };
 
-/*
-if (todoList.childElementCount == 5) {
-    taskInput.style.display = 'none';
-} else if (todoList.childElementCount < 5 && todoList.childElementCount > 0){
-    taskInput.style.display = 'block';
-} else if (todoList.childElementCount == 0) {
-    taskInput.style.display = 'block';
-    todoList.style.display = 'none';
+function check() {
+    if (todoList.childElementCount == 5) {
+        taskInput.style.display = 'none';
+    } else if (todoList.childElementCount < 5 && todoList.childElementCount > 0){
+        taskInput.style.display = 'block';
+        todoList.style.display = 'block';
+    } else if (todoList.childElementCount == 0) {
+        taskInput.style.display = 'block';
+        todoList.style.display = 'none';
+    };
 };
-*/
+check();
+
+
 
 
 
@@ -44,6 +53,7 @@ const deleteIcon = document.querySelectorAll(".task svg");
 deleteIcon.forEach(el => {
     el.addEventListener("click", function(e) {
         this.parentElement.remove();
+        check();
     })
 });
 
